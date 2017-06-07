@@ -249,7 +249,9 @@ function pushbutton_StopFB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
+handles.g.command('WT 10');
 handles.g.command('SH');
+
 
 
 %% Rotation motion
@@ -333,4 +335,5 @@ function pushbutton_StopRot_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
+handles.g.command('WT 10');
 handles.g.command('SH');
