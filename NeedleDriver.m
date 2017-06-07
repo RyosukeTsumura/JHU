@@ -69,10 +69,10 @@ global RotationValue;
 
 
 Pos_FB = handles.g.command('TPD');
-LinearValue = -str2double(Pos_FB)/2000;
+LinearValue = -str2double(Pos_FB)/512*25; %Encorder->512 palse/rev Insertion->25 mm/rev 
 set(handles.edit_CurPosFB,'string',num2str(LinearValue));
 Pos_Rotation = handles.g.command('TPC');
-RotationValue = -str2double(Pos_Rotation)/2000;
+RotationValue = -str2double(Pos_Rotation)/256*360;
 set(handles.edit_CurPosRot,'string',num2str(RotationValue));
 
 
@@ -198,7 +198,7 @@ function pushbutton_RelPosFB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Input_RelPos=str2double(get(handles.edit_RelPosFB,'String'));
-Input_RelPos=round(-Input_RelPos*2000);
+Input_RelPos=round(-Input_RelPos*512/25);
 give_pos=strcat('PR ,,,',num2str(Input_RelPos));
 handles.g.command(give_pos);
 handles.g.command('BG D');
@@ -208,7 +208,7 @@ function pushbutton_JogPlusFB_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogPlusFB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,,');
+handles.g.command('JG ,,,-20');
 handles.g.command('BG D');
 
 
@@ -217,7 +217,7 @@ function pushbutton_JogMinusFB_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogMinusFB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,,');
+handles.g.command('JG ,,,20');
 handles.g.command('BG D');
 
 
@@ -248,9 +248,8 @@ function pushbutton_StopFB_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_StopFB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
 handles.g.command('SH');
-
-
 
 
 %% Rotation motion
@@ -282,7 +281,7 @@ function pushbutton_RelPosRot_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 Input_RelPos=str2double(get(handles.edit_RelPosRot,'String'));
-Input_RelPos=round(-Input_RelPos*2000);
+Input_RelPos=round(-Input_RelPos*256/360);
 give_pos=strcat('PR ,,',num2str(Input_RelPos),',');
 handles.g.command(give_pos);
 handles.g.command('BG C');
@@ -315,7 +314,7 @@ function pushbutton_JogPlusRot_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogPlusRot (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,,');
+handles.g.command('JG ,,-256,');
 handles.g.command('BG C');
 
 
@@ -324,7 +323,7 @@ function pushbutton_JogRotMinus_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogRotMinus (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,,');
+handles.g.command('JG ,,256,');
 handles.g.command('BG C');
 
 
@@ -333,4 +332,5 @@ function pushbutton_StopRot_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_StopRot (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
 handles.g.command('SH');
