@@ -22,7 +22,7 @@ function varargout = NeedleDriver(varargin)
 
 % Edit the above text to modify the response to help NeedleDriver
 
-% Last Modified by GUIDE v2.5 05-Jun-2017 20:50:20
+% Last Modified by GUIDE v2.5 07-Jun-2017 21:27:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -337,3 +337,49 @@ function pushbutton_StopRot_Callback(hObject, eventdata, handles)
 handles.g.command('ST');
 handles.g.command('WT 10');
 handles.g.command('SH');
+
+
+% --- Executes on button press in pushbutton_SpeedHighFB.
+function pushbutton_SpeedHighFB_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_SpeedHighFB (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
+handles.g.command('KD ,,,?');
+handles.g.command('KP ,,,?');
+handles.g.command('KI ,,,?');
+handles.g.command('SH');
+
+% --- Executes on button press in pushbutton_SpeedLowFB.
+function pushbutton_SpeedLowFB_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_SpeedLowFB (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
+handles.g.command('KD ,,,256');
+handles.g.command('KP ,,,584');
+handles.g.command('KI ,,,.5');
+handles.g.command('SH');
+
+% --- Executes on button press in pushbutton_SpeedHighRot.
+function pushbutton_SpeedHighRot_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_SpeedHighRot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
+handles.g.command('KD ,,270,');
+handles.g.command('KP ,,800,');
+handles.g.command('KI ,,.5,');
+handles.g.command('SH');
+
+% --- Executes on button press in pushbutton_SpeedLowRot.
+function pushbutton_SpeedLowRot_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_SpeedLowRot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('ST');
+handles.g.command('KD ,,?,');
+handles.g.command('KP ,,?,');
+handles.g.command('KI ,,?,');
+handles.g.command('SH');
+
