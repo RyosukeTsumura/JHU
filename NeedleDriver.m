@@ -345,10 +345,8 @@ function pushbutton_SpeedHighFB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
-handles.g.command('KD ,,,?');
-handles.g.command('KP ,,,?');
-handles.g.command('KI ,,,?');
-handles.g.command('SH');
+handles.g.command('SP ,,,120');%2mm/s
+
 
 % --- Executes on button press in pushbutton_SpeedLowFB.
 function pushbutton_SpeedLowFB_Callback(hObject, eventdata, handles)
@@ -356,10 +354,7 @@ function pushbutton_SpeedLowFB_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
-handles.g.command('KD ,,,256');
-handles.g.command('KP ,,,584');
-handles.g.command('KI ,,,.5');
-handles.g.command('SH');
+handles.g.command('SP ,,,20');%1mm/s
 
 % --- Executes on button press in pushbutton_SpeedHighRot.
 function pushbutton_SpeedHighRot_Callback(hObject, eventdata, handles)
@@ -367,9 +362,7 @@ function pushbutton_SpeedHighRot_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
-handles.g.command('KD ,,270,');
-handles.g.command('KP ,,800,');
-handles.g.command('KI ,,.5,');
+handles.g.command('SP ,,256,');%10rpm
 handles.g.command('SH');
 
 % --- Executes on button press in pushbutton_SpeedLowRot.
@@ -378,8 +371,6 @@ function pushbutton_SpeedLowRot_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 handles.g.command('ST');
-handles.g.command('KD ,,?,');
-handles.g.command('KP ,,?,');
-handles.g.command('KI ,,?,');
+handles.g.command('SP ,,32,');%5rpm
 handles.g.command('SH');
 

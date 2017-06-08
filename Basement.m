@@ -22,7 +22,7 @@ function varargout = Basement(varargin)
 
 % Edit the above text to modify the response to help Basement
 
-% Last Modified by GUIDE v2.5 08-Jun-2017 09:45:16
+% Last Modified by GUIDE v2.5 08-Jun-2017 10:11:56
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -339,3 +339,61 @@ function edit_CurPosFB_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton_FinePosPlusUD.
+function pushbutton_FinePosPlusUD_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosPlusUD (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR ,,-400,');
+handles.g.command('BG C');
+
+
+% --- Executes on button press in pushbutton_FinePosMinusUD.
+function pushbutton_FinePosMinusUD_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosMinusUD (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR ,,400,');
+handles.g.command('BG C');
+
+
+% --- Executes on button press in pushbutton_FinePosPlusLR.
+function pushbutton_FinePosPlusLR_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosPlusLR (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR ,-400,,');
+handles.g.command('BG B');
+
+
+
+
+% --- Executes on button press in pushbutton_FinePosMinusLR.
+function pushbutton_FinePosMinusLR_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosMinusLR (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR ,400,,');
+handles.g.command('BG B');
+
+
+
+% --- Executes on button press in pushbutton_FinePosPlusFB.
+function pushbutton_FinePosPlusFB_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosPlusFB (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR 400,,,');
+handles.g.command('BG A');
+
+
+% --- Executes on button press in pushbutton_FinePosMinusFB.
+function pushbutton_FinePosMinusFB_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_FinePosMinusFB (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+handles.g.command('PR -400,,,');
+handles.g.command('BG A');
+
