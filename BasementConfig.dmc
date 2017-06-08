@@ -1,0 +1,64 @@
+REM  settigns for controller.
+
+REM  ORIGINAL: DH0; IA 10,162,34,56;
+REM  NEW: DH0; IA 192,168,10,2;
+
+REM  OA 1,1,1
+REM  OV 2,5,7.5
+REM  ER 9000,15000,11250
+
+REM  XQ #CONFIG, 2
+REM LINEAR STAGE = 10CM
+ST
+
+#CONFIG
+
+REM motors off
+
+
+REM Start with watchdog at 0.
+ZAA = 0
+
+REM change the servo loop update time
+TM1000;
+
+REM gantry-theta-x-y-z but I did n-X-Y-Z-n
+CE 0,0,0
+CN -1,1
+
+REM Set for brush motor operation
+BR 1,1,1,1,1
+
+REM Set axes to turn off on error
+OE 0,0,0,0,0
+
+DP 0.0,0.0,0.0,0.0,0.0
+
+REM Amplifier loop gain (for AMP-20540)
+REM AG 1,1,1,1,1
+
+REM PID gains
+KP 179, 196.0,206.0
+KI 57.0, 75.0, 66.0
+KD 1335.0, 1464.0, 1541.0
+
+REM Set continuous torque limit
+REM TL 8.0,8.0,8.0,3.0,1.5
+
+REM Set maximum torque limit (3.3A with 0.33 A/V amplifier gain)
+REM TK 9.0,9.0,9.0,4.0,2.0
+
+REM Set initial values for speed, acceleration, deceleration
+REM 1 mm/sec
+SP 10000,10000,10000
+
+REM Disables ECAM motion
+EB0
+
+
+REM Let the PC know that the file has executed
+ZAB=1
+
+REM LCD update
+MG "READY"
+EN
