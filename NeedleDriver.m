@@ -22,7 +22,7 @@ function varargout = NeedleDriver(varargin)
 
 % Edit the above text to modify the response to help NeedleDriver
 
-% Last Modified by GUIDE v2.5 07-Jun-2017 21:27:02
+% Last Modified by GUIDE v2.5 09-Jun-2017 11:08:05
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -208,7 +208,9 @@ function pushbutton_JogPlusFB_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogPlusFB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,-20');
+CurSpeedFB = -(handles.g.command('SP ,,,?'));
+give_speed = strcat('JG ,,,',num2str(CurSpeedFB));
+handles.g.command(give_speed);
 handles.g.command('BG D');
 
 
@@ -217,7 +219,9 @@ function pushbutton_JogMinusFB_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogMinusFB (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,,20');
+CurSpeedFB = handles.g.command('SP ,,,?');
+give_speed = strcat('JG ,,,',num2str(CurSpeedFB));
+handles.g.command(give_speed);
 handles.g.command('BG D');
 
 
@@ -316,7 +320,9 @@ function pushbutton_JogPlusRot_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogPlusRot (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,-256,');
+CurSpeedRot = -(handles.g.command('SP ,,?,'));
+give_speed=strcat('JG ,,',num2str(CurSpeedRot),',');
+handles.g.command(give_speed);
 handles.g.command('BG C');
 
 
@@ -325,7 +331,9 @@ function pushbutton_JogRotMinus_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton_JogRotMinus (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.g.command('JG ,,256,');
+CurSpeedRot = handles.g.command('SP ,,?,');
+give_speed = strcat('JG ,,',num2str(CurSpeedRot),',');
+handles.g.command(give_speed);
 handles.g.command('BG C');
 
 
@@ -374,3 +382,28 @@ handles.g.command('ST');
 handles.g.command('SP ,,32,');%5rpm
 handles.g.command('SH');
 
+
+
+% --- Executes on button press in pushbutton_JogBiRot.
+function pushbutton_JogBiRot_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton_JogBiRot (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%CurSpeedRot = -(handles.g.command('SP ,,?,'));
+%give_speed=strcat('JG ,,',num2str(CurSpeedRot),',');
+%handles.g.command(give_speed);
+%handles.g.command('BG C');
+
+handles.g.programDownloadFile('BiRotConfig.dmc');
+handles.g.command('XQ');
+%{
+handles.g.command('PR ,,-512,');
+handles.g.command('BG C');
+handles.g.command('AM C');
+handles.g.command('PR ,,512,');
+handles.g.command('BG C');
+handles.g.command('AM C');
+%}
+%handles.g.command('SH');
+%}
