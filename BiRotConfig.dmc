@@ -1,4 +1,5 @@
 #BEGIN
+REM TL ,,9,
 DP ,,0,
 
 #CW
@@ -15,7 +16,7 @@ DP ,,0,
 #CCW
 JG 0,0,256,-120;
 BG C D
-JP#CCW,(_TPC>-256);
+JP#CCW,(_TPC<-256);
 
 ST
 WT 10
